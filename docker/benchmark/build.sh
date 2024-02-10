@@ -17,7 +17,7 @@ fuzzer_list=(
     # aflfast
     # mopt
     # qsym
-    angora
+    # angora
     # fairfuzz
     libfuzzer
     radamsa
