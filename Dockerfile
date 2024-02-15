@@ -3,7 +3,7 @@ FROM fuzzer_base/aflfast as aflfast
 #FROM fuzzer_base/angora as angora
 FROM fuzzer_base/fairfuzz as fairfuzz
 FROM fuzzer_base/lafintel as lafintel
-FROM fuzzer_base/learnafl as learnafl
+#FROM fuzzer_base/learnafl as learnafl
 FROM fuzzer_base/libfuzzer as libfuzzer
 FROM fuzzer_base/mopt as mopt
 FROM fuzzer_base/radamsa as radamsa
@@ -11,7 +11,7 @@ FROM fuzzer_base/redqueen as redqueen
 
 FROM autofz_bench/afl as bench_afl
 #FROM autofz_bench/angora as bench_angora
-FROM autofz_bench/lafintel as bench_lafintel
+#FROM autofz_bench/lafintel as bench_lafintel
 FROM autofz_bench/libfuzzer as bench_libfuzzer
 FROM autofz_bench/radamsa as bench_radamsa
 FROM autofz_bench/redqueen as bench_redqueen
@@ -95,15 +95,15 @@ COPY --chown=$UID:$GID --from=aflfast /fuzzer /fuzzer
 #COPY --chown=$UID:$GID --from=angora /fuzzer /fuzzer
 COPY --chown=$UID:$GID --from=fairfuzz /fuzzer /fuzzer
 COPY --chown=$UID:$GID --from=lafintel /fuzzer /fuzzer
-COPY --chown=$UID:$GID --from=learnafl /fuzzer /fuzzer
-COPY --chown=$UID:$GID --from=libfuzzer /fuzzer /fuzzer
+#COPY --chown=$UID:$GID --from=learnafl /fuzzer /fuzzer
+#COPY --chown=$UID:$GID --from=libfuzzer /fuzzer /fuzzer
 COPY --chown=$UID:$GID --from=mopt /fuzzer /fuzzer
 COPY --chown=$UID:$GID --from=radamsa /fuzzer /fuzzer
 COPY --chown=$UID:$GID --from=redqueen /fuzzer /fuzzer
 
 COPY --chown=$UID:$GID --from=bench_afl /d /d
 #COPY --chown=$UID:$GID --from=bench_angora /d /d
-COPY --chown=$UID:$GID --from=bench_lafintel /d /d
+#COPY --chown=$UID:$GID --from=bench_lafintel /d /d
 COPY --chown=$UID:$GID --from=bench_radamsa /d /d
 COPY --chown=$UID:$GID --from=bench_redqueen /d /d
 
@@ -117,7 +117,7 @@ COPY --chown=$UID:$GID --from=autofz_bench/coverage:latest /d /d
 COPY --chown=$UID:$GID --from=autofz_bench/coverage:latest /autofz_bench /autofz_bench
 
 USER root
-RUN cp /fuzzer/LearnAFL/learning_engine.py /usr/local/bin
+#RUN cp /fuzzer/LearnAFL/learning_engine.py /usr/local/bin
 
 # Reset to normal compilers
 ENV CC="gcc" CXX="g++"
@@ -125,7 +125,7 @@ ENV CC="gcc" CXX="g++"
 # start install autofz dependencies
 
 # install newer python3
-RUN apt install -y --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev tk-dev ca-certificates
+#RUN apt install -y --no-install-recommends make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev tk-dev ca-certificates
 
 WORKDIR /root
 
@@ -142,8 +142,8 @@ ENV TZ=America/New_York
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # some useful tools
-RUN apt-get install -y zsh locales direnv highlight jq
-RUN locale-gen en_US.UTF-8
+#RUN apt-get install -y zsh locales direnv highlight jq
+#RUN locale-gen en_US.UTF-8
 
 COPY init.sh /
 COPY afl-cov/ /afl-cov

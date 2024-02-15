@@ -6,7 +6,7 @@ FUZZER_PREFIX=fuzzer_base
 # NOTE: order is important becasue of dependencies between Dockerfile
 fuzzer_list=(
     fuzzer-test-suite
-    fuzzer-test-suite-angora
+    # fuzzer-test-suite-angora
     fuzzer-test-suite-libfuzzer
     fuzzer-test-suite-aflplusplus
     fuzzer-test-suite-lafintel
@@ -23,7 +23,7 @@ fuzzer_list=(
     radamsa
     redqueen
     # learnafl
-    lafintel
+    # lafintel
 )
 
 pushd .
